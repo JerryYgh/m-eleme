@@ -1,6 +1,6 @@
-# m-element(Vue2.0饿了么移动端单页应用)
+# m-eleme(饿了么移动端单页应用)
 
-> A Vue.js project
+> A Vue.js project（Vue2.0 + Vue-router2.0 + Webpack2.0 + Vue-cli + Vue-resource）
 
 ## Build Setup
 
