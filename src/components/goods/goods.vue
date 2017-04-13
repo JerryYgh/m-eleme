@@ -1,15 +1,15 @@
 <template>
 	<div class="goods">
-		<div class="menu-wrapper" ref="menu-wrapper">
+		<div class="menu-wrapper" ref="menuWrapper">
 			<ul>
-				<li v-for="(item,index) in goods" class="menu-item">
+				<li v-for="(item,index) in goods" class="menu-item" :class="{'current': currentIndex === index}" @click="selectMenu(index,$event)">
 					<span class="text border-1px">
 						<span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
 					</span>
 				</li>
 			</ul>
 		</div>
-		<div class="foods-wrapper" ref="foods-wrapper">
+		<div class="foods-wrapper" ref="foodsWrapper">
 			<ul>
 				<li v-for="item in goods" class="food-list food-list-hook">
 					<h1 class="title">{{item.name}}</h1>
@@ -29,7 +29,7 @@
 									<span class="now">¥{{food.price}}</span><span class="old" v-show="food.oldPrice">¥{{food.oldPrice}}</span>
 								</div>
 								<div class="cartControl-wrapper">
-									<cartcontrol :food="food"></cartcontrol>
+									<!-- <cartcontrol :food="food"></cartcontrol> -->
 								</div>
 							</div>
 						</li>
@@ -37,26 +37,98 @@
 				</li>
 			</ul>
 		</div>
+		<shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
 	</div>
 </template>
 
 <script type="test/ecmascript-6">
+	import BScroll from 'better-scroll';
+	import shopcart from './../shopcart/shopcart';
 	const ERR_OK = 0;
 	export default{
 		name: 'goods',
+		props: {
+			seller: {
+				type: Object
+			}
+		},
 		data () {
 			return {
 				goods: [],
+				listHeight: [],
+				scrollY: 0,
 				classMap: ['decrease','discount','special','invoice','guarantee']
 			}
 		},
-		mounted () {
+		components: {
+			shopcart
+		},
+		mounted() {
 			this.$http.get('/api/goods').then((response) => {
 				response = response.body;
 				if(response.errno === ERR_OK){
 					this.goods = response.data;
+					this.$nextTick( ()=> {
+						this._initScroll();
+						this._calculateHeight();
+					})
 				}
 			 });
+		},
+		computed: {
+			currentIndex() {
+				for( let i = 0, l = this.listHeight.length; i < l; i++) {
+					let height1 = this.listHeight[i];
+					let height2 = this.listHeight[i+1];
+					if( !height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+						return i;
+					}
+				}
+				return 0;
+			},
+			selectFoods() {
+				let foods = [];
+				this.goods.forEach((good) => {
+					good.foods.forEach((food) => {
+						if(food.count) {
+							foods.push(food);
+						}
+					});
+				});
+				return foods
+			}
+		},
+		methods: {
+			selectMenu(index,event) {
+				if(!event._constructed) {
+					return;
+				}
+				let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+				let el = foodList[index];
+				this.foodsScroll.scrollToElement(el,300);
+			},
+			_initScroll() {
+				this.menuScroll = new BScroll(this.$refs.menuWrapper, {
+					click: true
+				});
+				this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
+					probeType: 3,
+					click: true
+				});
+				this.foodsScroll.on('scroll', (pos) => {
+					this.scrollY = Math.abs(Math.round(pos.y));
+				});
+			},
+			_calculateHeight() {
+				let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+				let height = 0;
+				this.listHeight.push(height);
+				for( let i = 0, l = foodList.length; i < l; i++) {
+					let item = foodList[i];
+					height += item.clientHeight;
+					this.listHeight.push(height);
+				}
+			}
 		}
 	};
 </script>
