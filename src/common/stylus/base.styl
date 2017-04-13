@@ -12,14 +12,24 @@ body,html
 		content: '.'
 		visibility: hidden
 
+.white
+	background: #fff
 @media(-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
-	.border-1px
+	.border-bottom-1px
 		&::after
+			-webkit-transform: scaleY(.7)
+			transform: scaleY(.7)
+	.border-top-1px
+		&::before
 			-webkit-transform: scaleY(.7)
 			transform: scaleY(.7)
 
 @media(-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
-	.border-1px
-		&::after
+	.border-top-1px
+		&::before
+			-webkit-transform: scaleY(.5)
+			transform: scaleY(.5)
+	.border-bottom-1px
+		&::before
 			-webkit-transform: scaleY(.5)
 			transform: scaleY(.5)

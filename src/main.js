@@ -19,6 +19,7 @@ Vue.config.productionTip = false;
 
 // 定义路由
 const routes = [
+  {path: '/', redirect: '/goods'},
   {path: '/goods', component: goods},
   {path: '/seller', component: seller},
   {path: '/ratings', component: ratings}
@@ -33,6 +34,6 @@ const router = new VueRouter({
 // 创建和挂在根实例
 new Vue({
   router,
-  template: '<App/>',
-  components: { App }
-}).$mount('#app');
+  el: '#app',
+  render: (h) => h(App)
+});
