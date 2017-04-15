@@ -66,6 +66,7 @@
 </template>
 
 <script type="test/ecmascript-6">
+	import {saveToLocal, loadFormLocal} from './../../common/js/util';
 	import BScroll from 'better-scroll'
 	import star from './../star/star';
 	export default{
@@ -77,9 +78,11 @@
 		},
 		data() {
 			return {
-				favoriate: false,
+				favoriate: (()=> {
+					return loadFormLocal(this.seller.id, 'favoriate', false);
+				})(),
 				classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-			}
+			};
 		},
 		computed: {
 			favoriateText() {
@@ -96,26 +99,8 @@
 		},
 		methods: {
 			toggleFavoriate() {
-				if( !window.localStorage){
-					return false;
-				}else {
-					var storage = window.localStorage;
-					if(storage.length) {
-						var str = storage.getItem('favoriates');
-						if(this.favoriate.toString() === str) {
-							this.favoriate = false
-							console.log(22,this.favoriate,str)
-							storage.removeItem('favoriates');	
-						}
-					}
-					if(!this.favoriate) {
-						this.favoriate = true;
-						storage.setItem('favoriates', true);
-					}else{
-						this.favoriate = false;
-					}
-				}
-				
+				this.favoriate = !this.favoriate;
+				saveToLocal(this.seller.id, 'favoriate', this.favoriate);
 			},
 			_initScroll() {
 				if(!this.scroll) {
@@ -162,7 +147,7 @@
 	.ratings-wrapper
 		position: absolute
 		top: 174px
-		bottom: 46px
+		bottom: 0
 		width: 100%
 		overflow: hidden
 		background: #f3f5f7
