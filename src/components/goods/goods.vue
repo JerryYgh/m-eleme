@@ -29,7 +29,7 @@
 									<span class="now">¥{{food.price}}</span><span class="old" v-show="food.oldPrice">¥{{food.oldPrice}}</span>
 								</div>
 								<div class="cartControl-wrapper">
-									<!-- <cartcontrol :food="food"></cartcontrol> -->
+									<cartcontrol :food="food" v-on:balls="drop"></cartcontrol>
 								</div>
 							</div>
 						</li>
@@ -37,13 +37,14 @@
 				</li>
 			</ul>
 		</div>
-		<shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+		<shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
 	</div>
 </template>
 
 <script type="test/ecmascript-6">
 	import BScroll from 'better-scroll';
 	import shopcart from './../shopcart/shopcart';
+	import cartcontrol from './../cartcontrol/cartcontrol';
 	const ERR_OK = 0;
 	export default{
 		name: 'goods',
@@ -61,7 +62,8 @@
 			}
 		},
 		components: {
-			shopcart
+			shopcart,
+			cartcontrol
 		},
 		created() {
 			this.$http.get('/api/goods').then((response) => {
@@ -99,6 +101,12 @@
 			}
 		},
 		methods: {
+			drop(target) {
+				//体验优化，异步执行下落动画
+				this.$nextTick(() => {
+					this.$refs.shopcart.drop(target);
+				});
+			},
 			selectMenu(index,event) {
 				if(!event._constructed) {
 					return;
