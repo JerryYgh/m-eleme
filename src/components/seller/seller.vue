@@ -1,6 +1,6 @@
 <template>
-	<div class="ratings-wrapper" ref="ratingsWrapper">
-		<div class="ratings">
+	<div class="seller-wrapper" ref="sellerWrapper">
+		<div class="seller">
 			<div class="top-wrapper white">
 				<div class="base">
 					<div class="left">
@@ -70,7 +70,7 @@
 	import BScroll from 'better-scroll'
 	import star from './../star/star';
 	export default{
-		name: 'ratings',
+		name: 'seller',
 		props: {
 			seller: {
 				type: Object
@@ -104,7 +104,7 @@
 			},
 			_initScroll() {
 				if(!this.scroll) {
-					this.scroll = new BScroll(this.$refs.ratingsWrapper,{
+					this.scroll = new BScroll(this.$refs.sellerWrapper,{
 						click: true
 					});
 				}else {
@@ -144,7 +144,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
 	@import "../../common/stylus/mixin"
-	.ratings-wrapper
+	.seller-wrapper
 		position: absolute
 		top: 174px
 		bottom: 0

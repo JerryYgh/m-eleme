@@ -65,6 +65,7 @@
   import cartcontrol from './../cartcontrol/cartcontrol';
   import split from './../split/split';
   import ratingselect from './../ratingselect/ratingselect';
+  import {formatDate} from './../../common/js/date.js';
 
   const ALL = 2;
 
@@ -139,6 +140,8 @@
     },
     filters: {
       formatDate(time) {
+        let date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd hh:mm');
       }
     },
     components: {
@@ -151,7 +154,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixin"
-
+  
   .food
     position: fixed
     left: 0

@@ -55,3 +55,4 @@ export function loadFormLocal(id, key, def) {
     return ret || def;
   }
 };
+
