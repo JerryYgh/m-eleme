@@ -30,10 +30,14 @@ npm run build
 
 ##  项目说明
 
-#用到的技术栈
+
+> 用到的技术栈
+
 vue2 + vue-router2 + webpack2 + vue-cli2 + vue-resource + stylus + flex + eslint
 
-#说明
+
+> 说明
+
 - [x] resource文件里有UI原稿psd，切好的图，及标注文件。
 - [x] 基于vue2.0
 - [x] 使用vue-cli2脚手架搭建项目
@@ -46,7 +50,9 @@ vue2 + vue-router2 + webpack2 + vue-cli2 + vue-resource + stylus + flex + eslint
 - [x] 联动滚动借助了better-scroll插件
 - [x] localStorage实现本地存储
 
-#学习参考
+
+> 学习参考
+
 - [x] vue2.0官网： https://vuefe.cn/v2/guide/
 - [x] webpack1免费视频课程，戳这里：http://www.imooc.com/learn/802
 - [x] webpack1向webpack2升级：https://webpack.js.org/guides/migrating/
