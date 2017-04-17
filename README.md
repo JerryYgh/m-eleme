@@ -4,7 +4,7 @@
 
 > 项目github地址：[m-eleme](https://github.com/JerryYgh/m-eleme)
 
-> 如果觉得对您有帮助，请给我个star支持一下，谢谢！
+> 如果觉得对您有帮助，您可以在右上角给我个star支持一下，谢谢！
 
 ##  项目截图
 
