@@ -14,19 +14,19 @@
 
 
 ##  项目运行
-
-### 克隆项目到本地
+```bash
+# 克隆项目到本地
 git clone https://github.com/JerryYgh/m-eleme.git
 
-###  安装依赖
+#  安装依赖
 npm install
 
-### 本地开发，开启服务器，浏览器访问http://localhost:8080
+# 本地开发，开启服务器，浏览器访问http://localhost:8080
 npm run dev
 
-###  构建生产
+#  构建生产
 npm run build
-
+```
 
 ##  项目说明
 
