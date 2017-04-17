@@ -1,21 +1,24 @@
 # m-eleme(饿了么移动端单页应用)
 
-> A Vue.js project（Vue2.0 + Vue-router2.0 + Webpack2.0 + Vue-cli + Vue-resource）
+> 这是一个基于Vue全家桶实现的饿了么移动端webapp
+> 项目github地址：[m-eleme](https://github.com/JerryYgh/m-eleme)
+> 如果觉得对您有帮助，请给我个star支持一下，谢谢！
 
-## Build Setup
+##  Build Setup项目运行
 
 ``` bash
-# install dependencies
+# 克隆项目到本地
+git clone https://github.com/JerryYgh/m-eleme.git
+
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 本地开发，开启服务器，浏览器访问http://localhost:8080
 npm run dev
 
-# build for production with minification
+# 构建生产
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
