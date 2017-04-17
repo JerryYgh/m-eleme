@@ -6,6 +6,10 @@
 
 > 如果觉得对您有帮助，请给我个star支持一下，谢谢！
 
+##  项目截图
+![eleme.gif](./resource/eleme.gif)
+
+
 ##  Build Setup项目运行
 
 ``` bash
@@ -20,6 +24,8 @@ npm run dev
 
 # 构建生产
 npm run build
+
+
 
 
 
